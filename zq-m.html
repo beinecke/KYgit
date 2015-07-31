@@ -9,7 +9,7 @@
                 border: 1px solid #ccc;
                 height: 100px;
                 margin: 10px;
-                width: 100px;
+                width: 400px;
             }
         </style>
     </head>
@@ -23,9 +23,9 @@
 		var pluscount = [];
 			function getSum (arr){
 				var summedia = 0;
-				arr.forEach(function(item,index,array){
-					summedia += item;
-				}) 
+				for(var k = 0;k<arr.length;k++){
+					summedia += arr[k];
+				}
 				return summedia;
 			}
             function pushTime() {
@@ -56,16 +56,18 @@
 				for(var j=loopcount;j>0;j--){
 					fn();
 				}
-				var aver = getSum(arrcount)/loopcount;
-				console.log(count,method,aver)
+				var aver = getSum(arrcount)/loopcount;	
+				var result = '' + count+'次,'+ method+'：'+ aver+'毫秒';
+				// var result = aver;
 				pushcount = [];
 				pluscount = [];
+				return result;
 			}
-			           
+			      
             var push = document.getElementById('push');
             var plus = document.getElementById('plus');
-            push.onclick = function(){print(pushTime,pushcount,loopcount,'push')};
-            plus.onclick = function(){print(plusTime,pluscount,loopcount,'plus')};
+            push.onclick = function(){this.innerHTML='Wating';this.innerHTML = print(pushTime,pushcount,loopcount,'push')};
+            plus.onclick = function(){this.innerHTML='Wating';this.innerHTML = print(plusTime,pluscount,loopcount,'plus')};
         </script>
     </body>
 </html>
