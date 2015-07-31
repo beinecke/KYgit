@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>New page</title>
+        <style>
+            div {
+                background-color: #eee;
+                border: 1px solid #ccc;
+                height: 100px;
+                margin: 10px;
+                width: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="push">PUSH></div>
+        <div id="plus">PLUS+</div>
+        <script>
+		var count = 1000000;
+		var loopcount = 30;
+		var pushcount = [];
+		var pluscount = [];
+			function getSum (arr){
+				var summedia = 0;
+				arr.forEach(function(item,index,array){
+					summedia += item;
+				}) 
+				return summedia;
+			}
+            function pushTime() {
+                var startDate = new Date();
+                var start = startDate.getTime();
+                var loop = [];
+                for(var i = count; i > 0; i--) {
+                    loop.push('abcdefghijklmnopqrstuvwxyz');
+                }
+                var string = loop.join('');
+                var endDate = new Date();
+                var end = endDate.getTime();
+                pushcount.push(end - start);
+            }
+            function plusTime() {
+                var startDate = new Date();
+                var start = startDate.getTime();
+                var loop = '';
+                for(var i = count; i > 0; i--) {
+                    loop += 'abcdefghijklmnopqrstuvwxyz';
+                }
+                var string = loop;
+                var endDate = new Date();
+                var end = endDate.getTime();
+                pluscount.push(end - start);
+            }
+			function print(fn,arrcount,loopcount,method){
+				for(var j=loopcount;j>0;j--){
+					fn();
+				}
+				var aver = getSum(arrcount)/loopcount;
+				console.log(count,method,aver)
+				pushcount = [];
+				pluscount = [];
+			}
+			           
+            var push = document.getElementById('push');
+            var plus = document.getElementById('plus');
+            push.onclick = function(){print(pushTime,pushcount,loopcount,'push')};
+            plus.onclick = function(){print(plusTime,pluscount,loopcount,'plus')};
+        </script>
+    </body>
+</html>
