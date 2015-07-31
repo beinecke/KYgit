@@ -7,9 +7,12 @@
             div {
                 background-color: #eee;
                 border: 1px solid #ccc;
-                height: 100px;
+                height: 60px;
+                line-height: 60px;
+                float: left;
                 margin: 10px;
-                width: 100px;
+                text-align: center;
+                width: 200px;
             }
         </style>
     </head>
@@ -27,25 +30,39 @@
                 var string = loop.join('');
                 var endDate = new Date();
                 var end = endDate.getTime();
-                alert(end - start);
+                return end - start;
             }
+
             function plusTime() {
                 var startDate = new Date();
                 var start = startDate.getTime();
                 var loop = '';
-                for(var i = 1000000; i > 0; i--) {
+                for(var i = 10000; i > 0; i--) {
                     loop += 'abcdefghijklmnopqrstuvwxyz';
                 }
                 var string = loop;
                 var endDate = new Date();
                 var end = endDate.getTime();
-                alert(end - start);    
+                return end - start;
             }
-            
+
+            function average(fun, times) {
+                var time = 0;
+                for(var i = times; i > 0; i--) {
+                    time += fun();
+                }
+                return time / times;
+            }
+
             var push = document.getElementById('push');
             var plus = document.getElementById('plus');
-            push.onclick = pushTime;
-            plus.onclick = plusTime;
+
+            push.onclick = function() {
+                alert(average(pushTime, 1));
+            };
+            plus.onclick = function() {
+                alert(average(plusTime, 1));
+            };
         </script>
     </body>
 </html>
