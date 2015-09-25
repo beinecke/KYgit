@@ -29,12 +29,12 @@
 				return summedia;
 			}
             function pushTime() {
-                var startDate = new Date();
-                var start = startDate.getTime();
                 var loop = [];
                 for(var i = count; i > 0; i--) {
                     loop.push('abcdefghijklmnopqrstuvwxyz');
                 }
+                var startDate = new Date();
+                var start = startDate.getTime();
                 var string = loop.join('');
                 var endDate = new Date();
                 var end = endDate.getTime();
